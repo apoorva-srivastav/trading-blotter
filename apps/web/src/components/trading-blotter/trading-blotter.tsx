@@ -71,7 +71,7 @@ function TradingBlotterContent() {
         <FilterBar />
         
         {/* Main Trading Tables */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 h-[calc(100vh-400px)]">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
           {/* Client & Algo Orders Table */}
           <OrderTable />
           

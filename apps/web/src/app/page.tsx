@@ -80,7 +80,7 @@ export default function Home() {
   // HFT Configuration
   const useHFTMode = true; // Enable high-frequency trading optimizations
   const useAGGrid = true; // Use AG Grid Enterprise for maximum performance
-  const enablePerformanceMonitoring = true; // Monitor performance metrics
+  const enablePerformanceMonitoring = false; // Monitor performance metrics
   
   // Fallback mode for debugging
   const isDebugMode = false;
@@ -123,80 +123,63 @@ export default function Home() {
       // High-Frequency Trading Mode with all optimizations
       return (
         <Suspense fallback={<LoadingSpinner />}>
-          <HFTKeyboardShortcuts
-            onCancelOrder={handleCancelOrder}
-            onSliceOrder={handleSliceOrder}
-            onModifyOrder={handleModifyOrder}
-            onNewOrder={handleNewOrder}
-          >
             <main className="min-h-screen bg-gray-900 text-white">
-              {/* HFT Header */}
-              <div className="bg-black border-b border-gray-700 px-6 py-3">
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-4">
-                    <h1 className="text-xl font-bold text-green-400 font-mono">
-                      HFT TRADING PLATFORM
+              {/* HFT Header - Responsive */}
+              <div className="bg-black border-b border-gray-700 px-3 sm:px-4 lg:px-6 py-2 sm:py-3">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4">
+                  <div className="flex items-center gap-2 sm:gap-4">
+                    <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-green-400 font-mono">
+                      <span className="hidden sm:inline">HFT TRADING PLATFORM</span>
+                      <span className="sm:hidden">HFT PLATFORM</span>
                     </h1>
                     <div className="flex items-center gap-2 text-xs">
                       <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                       <span className="text-green-400 font-mono">LIVE</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 text-xs font-mono">
+                  <div className="flex items-center gap-2 sm:gap-4 text-2xs sm:text-xs font-mono">
                     <div className="text-gray-400">
-                      🚀 Performance Optimized • ⚡ Real-time Data • ⌨️ Keyboard First
+                      <span className="hidden lg:inline">🚀 Performance Optimized • ⚡ Real-time Data • ⌨️ Keyboard First</span>
+                      <span className="hidden sm:inline lg:hidden">🚀 Optimized • ⚡ Real-time • ⌨️ Keyboard</span>
+                      <span className="sm:hidden">🚀 ⚡ ⌨️</span>
                     </div>
                   </div>
                 </div>
               </div>
               
-              {/* Main Trading Interface */}
+              {/* Main Trading Interface - Responsive Height */}
               {useAGGrid ? (
-                <div className="h-[calc(100vh-120px)]">
+                <div>
                   <LinkedOrderTables />
                 </div>
               ) : (
                 <HFTTradingPlatform />
               )}
               
-              {/* Performance Monitor */}
-              {enablePerformanceMonitoring && (
-                <PerformanceMonitor 
-                  isVisible={true}
-                  position="top-right"
-                  enableAlerts={true}
-                  thresholds={{
-                    maxRenderTime: 16, // 60fps
-                    minFps: 30,
-                    maxLatency: 100 // 100ms max for HFT
-                  }}
-                />
-              )}
               
-              {/* HFT Status Bar */}
-              <div className="fixed bottom-0 left-0 right-0 bg-black border-t border-gray-700 px-6 py-2">
-                <div className="flex justify-between items-center text-xs font-mono">
-                  <div className="flex items-center gap-6">
-                    <div className="text-green-400">
-                      ✓ WebSocket Connected
+              {/* HFT Status Bar - Responsive */}
+              <div className="fixed bottom-0 left-0 right-0 bg-black border-t border-gray-700 px-3 sm:px-4 lg:px-6 py-2">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0 text-2xs sm:text-xs font-mono">
+                  <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 overflow-x-auto">
+                    <div className="text-green-400 whitespace-nowrap">
+                     
                     </div>
-                    <div className="text-blue-400">
-                      ✓ AG Grid Enterprise
+                    <div className="text-blue-400 whitespace-nowrap">
+                     
                     </div>
-                    <div className="text-yellow-400">
-                      ✓ Delta Updates
+                    <div className="text-yellow-400 whitespace-nowrap">
+                      
                     </div>
-                    <div className="text-purple-400">
-                      ✓ Virtualization
+                    <div className="text-purple-400 whitespace-nowrap">
+                      
                     </div>
                   </div>
-                  <div className="text-gray-400">
-                    Press F1 for keyboard shortcuts • ESC to clear selection
+                  <div className="text-gray-400 text-center sm:text-right">
+                    
                   </div>
                 </div>
               </div>
             </main>
-          </HFTKeyboardShortcuts>
         </Suspense>
       );
     }

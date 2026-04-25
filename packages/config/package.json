@@ -1,0 +1,9 @@
+{
+  "name": "@repo/config",
+  "version": "1.0.0",
+  "private": true,
+  "files": ["tsconfig.base.json", "eslint-preset.js"],
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules"
+  }
+}

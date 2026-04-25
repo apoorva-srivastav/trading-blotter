@@ -21,7 +21,7 @@
     "ag-grid-community": "^35.2.1",
     "ag-grid-enterprise": "^35.2.1",
     "ag-grid-react": "^35.2.1",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "critters": "^0.0.23",
     "date-fns": "^3.2.0",
     "immer": "^11.1.4",
@@ -33,7 +33,7 @@
     "react-window": "^2.2.7",
     "react-window-infinite-loader": "^2.0.1",
     "socket.io-client": "^4.6.1",
-    "tailwind-merge": "^2.2.0",
+    "tailwind-merge": "^2.6.1",
     "typescript": "^5.3.3",
     "ws": "^8.20.0",
     "zustand": "^4.5.0"

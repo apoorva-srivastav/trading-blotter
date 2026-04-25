@@ -175,16 +175,30 @@ table {
   contain: layout style paint;
 }
 
-/* Grid layout for responsive design */
+/* Enhanced grid layout for responsive design */
 .trading-grid {
   display: grid;
-  gap: 1.5rem;
+  gap: 1rem;
   grid-template-columns: 1fr;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
+  .trading-grid {
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .trading-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .trading-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
   }
 }
 
@@ -271,7 +285,23 @@ table {
   white-space: nowrap;
 }
 
-/* Responsive typography */
+/* Responsive typography and layout */
+@media (max-width: 475px) {
+  .trading-table {
+    font-size: 0.625rem;
+  }
+  
+  .trading-table th,
+  .trading-table td {
+    padding: 0.375rem 0.125rem;
+  }
+  
+  /* Hide less critical columns on mobile */
+  .trading-table .hide-mobile {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .trading-table {
     font-size: 0.75rem;
@@ -280,5 +310,101 @@ table {
   .trading-table th,
   .trading-table td {
     padding: 0.5rem 0.25rem;
+  }
+  
+  /* Responsive grid adjustments */
+  .trading-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .trading-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .trading-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .trading-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Responsive container utilities */
+.responsive-container {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Mobile-first responsive text sizes */
+.responsive-text-sm {
+  font-size: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-text-sm {
+    font-size: 0.875rem;
+  }
+}
+
+.responsive-text-base {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-text-base {
+    font-size: 1rem;
+  }
+}
+
+.responsive-text-lg {
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-text-lg {
+    font-size: 1.125rem;
+  }
+}
+
+/* Responsive spacing utilities */
+.responsive-padding {
+  padding: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-padding {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-padding {
+    padding: 1.5rem;
   }
 }

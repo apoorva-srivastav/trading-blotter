@@ -461,61 +461,68 @@ export function LinkedOrderTables() {
   }, []);
 
   return (
-    <div className="w-full h-screen flex flex-col p-4 gap-4">
-      {/* Header with View Toggle and Export Controls */}
-      <div className="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-        <div className="flex items-center gap-4">
-          <h1 className="text-xl font-bold text-gray-800">Order Management</h1>
+    <div className="w-full h-screen flex flex-col p-2 sm:p-3 lg:p-4 gap-2 sm:gap-3 lg:gap-4">
+      {/* Header with View Toggle and Export Controls - Responsive */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+          <h1 className="text-lg sm:text-xl font-bold text-gray-800">Order Management</h1>
           
-          {/* View Mode Toggle */}
-          <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+          {/* View Mode Toggle - Responsive */}
+          <div className="flex items-center gap-1 sm:gap-2 bg-gray-100 rounded-lg p-1">
             <button
               onClick={() => setViewMode('combined')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-colors ${
                 viewMode === 'combined'
                   ? 'bg-white text-blue-600 shadow-sm'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              Combined View
+              <span className="hidden sm:inline">Combined View</span>
+              <span className="sm:hidden">Combined</span>
             </button>
             <button
               onClick={() => setViewMode('flattened')}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition-colors ${
                 viewMode === 'flattened'
                   ? 'bg-white text-blue-600 shadow-sm'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              Flattened View
+              <span className="hidden sm:inline">Flattened View</span>
+              <span className="sm:hidden">Flattened</span>
             </button>
           </div>
         </div>
 
-        {/* Export Buttons */}
-        <div className="flex items-center gap-2">
+        {/* Export Buttons - Responsive */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
           {viewMode === 'combined' ? (
             <>
               <button
                 onClick={() => exportToCSV('combined')}
-                className="px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+                className="px-2 sm:px-3 py-1.5 sm:py-2 bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
               >
-                Export Client & Algo Orders
+                <span className="hidden lg:inline">Export Client & Algo Orders</span>
+                <span className="hidden sm:inline lg:hidden">Export Combined</span>
+                <span className="sm:hidden">Export</span>
               </button>
               <button
                 onClick={() => exportToCSV('market')}
                 disabled={!selectedOrderId}
-                className="px-3 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="px-2 sm:px-3 py-1.5 sm:py-2 bg-green-600 text-white text-xs sm:text-sm font-medium rounded-md hover:bg-green-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
-                Export Market Orders
+                <span className="hidden lg:inline">Export Market Orders</span>
+                <span className="hidden sm:inline lg:hidden">Export Market</span>
+                <span className="sm:hidden">Market</span>
               </button>
             </>
           ) : (
             <button
               onClick={() => exportToCSV('flattened')}
-              className="px-3 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors"
+              className="px-2 sm:px-3 py-1.5 sm:py-2 bg-indigo-600 text-white text-xs sm:text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors"
             >
-              Export All Orders
+              <span className="hidden sm:inline">Export All Orders</span>
+              <span className="sm:hidden">Export All</span>
             </button>
           )}
         </div>
@@ -523,29 +530,31 @@ export function LinkedOrderTables() {
 
       {/* Conditional Rendering Based on View Mode */}
       {viewMode === 'combined' ? (
-        <div className="flex-1 flex gap-4">
-          {/* Left Panel - Combined Client & Algo Orders */}
-          <div className="flex-1 flex flex-col bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-            <div className="mb-3">
-              <h2 className="text-lg font-semibold text-indigo-700 flex items-center gap-2">
+        <div className="flex-1 flex flex-col lg:flex-row gap-2 sm:gap-3 lg:gap-4">
+          {/* Left Panel - Combined Client & Algo Orders - Responsive */}
+          <div className="flex-1 flex flex-col bg-white rounded-lg shadow-sm border border-gray-200 p-2 sm:p-3 lg:p-4">
+            <div className="mb-2 sm:mb-3">
+              <h2 className="text-base sm:text-lg font-semibold text-indigo-700 flex items-center gap-2">
                 <span>📊</span>
-                Client & Algo Orders (Hierarchy)
+                <span className="hidden sm:inline">Client & Algo Orders (Hierarchy)</span>
+                <span className="sm:hidden">Orders</span>
               </h2>
-              <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
-                <span>Total: {combinedOrders.length} orders</span>
-                <span>•</span>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-gray-600 mt-1">
+                <span>Total: {combinedOrders.length}</span>
+                <span className="hidden sm:inline">•</span>
                 <span className="flex items-center gap-1">
                   <span className="w-3 h-3 bg-blue-100 border border-blue-200 rounded"></span>
-                  {clientOrders.length} Client
+                  {clientOrders.length} <span className="hidden sm:inline">Client</span>
                 </span>
-                <span>•</span>
+                <span className="hidden sm:inline">•</span>
                 <span className="flex items-center gap-1">
                   <span className="w-3 h-3 bg-purple-100 border border-purple-200 rounded"></span>
-                  {combinedOrders.length - clientOrders.length} Algo
+                  {combinedOrders.length - clientOrders.length} <span className="hidden sm:inline">Algo</span>
                 </span>
               </div>
-              <p className="text-xs text-gray-500 mt-1">
-                💡 Client orders at level 0, Algo orders indented at level 1. Select any order to view related Market orders.
+              <p className="text-2xs sm:text-xs text-gray-500 mt-1">
+                <span className="hidden sm:inline">💡 Client orders at level 0, Algo orders indented at level 1. Select any order to view related Market orders.</span>
+                <span className="sm:hidden">💡 Select order to view market orders</span>
               </p>
             </div>
             <div className="ag-theme-quartz flex-1">
@@ -573,19 +582,28 @@ export function LinkedOrderTables() {
             </div>
           </div>
 
-          {/* Right Panel - Market Orders (Linked Table) */}
-          <div className="flex-1 flex flex-col bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          {/* Right Panel - Market Orders (Linked Table) - Responsive */}
+          <div className="flex-1 flex flex-col bg-white rounded-lg shadow-sm border border-gray-200 p-2 sm:p-3 lg:p-4 mt-3 lg:mt-0">
             <div className="mb-2">
-              <h2 className="text-lg font-semibold text-green-700 flex items-center gap-2">
+              <h2 className="text-base sm:text-lg font-semibold text-green-700 flex items-center gap-2">
                 <span>🎯</span>
-                Market Orders
+                <span className="hidden sm:inline">Market Orders</span>
+                <span className="sm:hidden">Market</span>
               </h2>
               {selectedOrderId ? (
-                <p className="text-sm text-gray-600">
-                  Showing {linkedMarketOrders.length} market orders for {selectedOrderType === 'client' ? 'Client Order' : 'Algo Order'}: {selectedOrderId}
+                <p className="text-xs sm:text-sm text-gray-600">
+                  <span className="hidden sm:inline">
+                    Showing {linkedMarketOrders.length} market orders for {selectedOrderType === 'client' ? 'Client Order' : 'Algo Order'}: {selectedOrderId}
+                  </span>
+                  <span className="sm:hidden">
+                    {linkedMarketOrders.length} orders for {selectedOrderType}: {selectedOrderId}
+                  </span>
                 </p>
               ) : (
-                <p className="text-sm text-gray-500">Select a Client Order or Algo Order to view related Market Orders</p>
+                <p className="text-xs sm:text-sm text-gray-500">
+                  <span className="hidden sm:inline">Select a Client Order or Algo Order to view related Market Orders</span>
+                  <span className="sm:hidden">Select order to view market orders</span>
+                </p>
               )}
             </div>
             <div className="ag-theme-quartz flex-1">
@@ -609,12 +627,20 @@ export function LinkedOrderTables() {
           </div>
         </div>
       ) : (
-        /* Flattened View - Single Table with All Orders */
-        <div className="flex-1 flex flex-col bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold text-indigo-700">All Orders (Hierarchical View)</h2>
-            <p className="text-sm text-gray-600 mt-1">
-              Showing {flattenedData.length} total orders across all levels (Client → Algo → Market)
+        /* Flattened View - Single Table with All Orders - Responsive */
+        <div className="flex-1 flex flex-col bg-white rounded-lg shadow-sm border border-gray-200 p-2 sm:p-3 lg:p-4">
+          <div className="mb-3 sm:mb-4">
+            <h2 className="text-base sm:text-lg font-semibold text-indigo-700">
+              <span className="hidden sm:inline">All Orders (Hierarchical View)</span>
+              <span className="sm:hidden">All Orders</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">
+              <span className="hidden sm:inline">
+                Showing {flattenedData.length} total orders across all levels (Client → Algo → Market)
+              </span>
+              <span className="sm:hidden">
+                {flattenedData.length} total orders
+              </span>
             </p>
           </div>
           <div className="ag-theme-quartz flex-1">

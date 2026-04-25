@@ -59,20 +59,22 @@ export function HFTTradingPlatform({
   
   return (
     <div className="h-full flex flex-col bg-gray-900 text-white">
-      {/* HFT Header with Real-time Stats */}
-      <div className="bg-black border-b border-gray-700 p-4">
-        <div className="flex justify-between items-start">
-          <div>
-            <h1 className="text-2xl font-bold text-green-400 font-mono mb-2">
-              HFT TRADING PLATFORM
+      {/* HFT Header with Real-time Stats - Responsive */}
+      <div className="bg-black border-b border-gray-700 p-2 sm:p-3 lg:p-4">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-3 lg:gap-0">
+          <div className="flex-1">
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-green-400 font-mono mb-1 sm:mb-2">
+              <span className="hidden sm:inline">HFT TRADING PLATFORM</span>
+              <span className="sm:hidden">HFT PLATFORM</span>
             </h1>
-            <div className="flex items-center gap-6 text-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 lg:gap-6 text-xs sm:text-sm">
               <div className="flex items-center gap-2">
                 <div className={`w-3 h-3 rounded-full ${
                   connectionState === 'CONNECTED' ? 'bg-green-500 animate-pulse' : 'bg-red-500'
                 }`}></div>
                 <span className="text-gray-300">
-                  WebSocket: <span className={connectionState === 'CONNECTED' ? 'text-green-400' : 'text-red-400'}>
+                  <span className="hidden sm:inline">WebSocket: </span>
+                  <span className={connectionState === 'CONNECTED' ? 'text-green-400' : 'text-red-400'}>
                     {connectionState}
                   </span>
                 </span>
@@ -85,91 +87,94 @@ export function HFTTradingPlatform({
             </div>
           </div>
           
-          {/* Real-time Statistics */}
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div className="bg-gray-800 rounded-lg p-3">
-              <div className="text-2xl font-bold text-blue-400 font-mono">
+          {/* Real-time Statistics - Responsive Grid */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-4 text-center">
+            <div className="bg-gray-800 rounded-lg p-2 sm:p-3">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-400 font-mono">
                 {stats.totalOrders.toLocaleString()}
               </div>
-              <div className="text-xs text-gray-400">Total Orders</div>
+              <div className="text-2xs sm:text-xs text-gray-400">
+                <span className="hidden sm:inline">Total Orders</span>
+                <span className="sm:hidden">Orders</span>
+              </div>
             </div>
-            <div className="bg-gray-800 rounded-lg p-3">
-              <div className="text-2xl font-bold text-green-400 font-mono">
+            <div className="bg-gray-800 rounded-lg p-2 sm:p-3">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-green-400 font-mono">
                 ${(stats.totalValue / 1000000).toFixed(1)}M
               </div>
-              <div className="text-xs text-gray-400">Total Value</div>
+              <div className="text-2xs sm:text-xs text-gray-400">
+                <span className="hidden sm:inline">Total Value</span>
+                <span className="sm:hidden">Value</span>
+              </div>
             </div>
-            <div className="bg-gray-800 rounded-lg p-3">
-              <div className="text-2xl font-bold text-yellow-400 font-mono">
+            <div className="bg-gray-800 rounded-lg p-2 sm:p-3">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-yellow-400 font-mono">
                 {stats.fillRate.toFixed(1)}%
               </div>
-              <div className="text-xs text-gray-400">Fill Rate</div>
+              <div className="text-2xs sm:text-xs text-gray-400">
+                <span className="hidden sm:inline">Fill Rate</span>
+                <span className="sm:hidden">Fill</span>
+              </div>
             </div>
           </div>
           
-          {/* Data Controls */}
-          <div className="flex flex-col items-end gap-2">
+          {/* Data Controls - Responsive */}
+          <div className="flex flex-col lg:items-end gap-2 mt-3 lg:mt-0">
             <SampleDataLoader />
-            <div className="text-xs text-gray-400 text-right">
-              ⚡ Real-time Data Engine<br/>
-              🚀 Performance Optimized
+            <div className="text-2xs sm:text-xs text-gray-400 text-left lg:text-right">
+              <span className="hidden sm:inline">⚡ Real-time Data Engine<br/>🚀 Performance Optimized</span>
+              <span className="sm:hidden">⚡ Real-time<br/>🚀 Optimized</span>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Order Breakdown */}
-      <div className="bg-gray-800 border-b border-gray-700 px-4 py-2">
-        <div className="flex justify-between items-center text-sm">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
+      {/* Order Breakdown - Responsive */}
+      <div className="bg-gray-800 border-b border-gray-700 px-2 sm:px-3 lg:px-4 py-2">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 text-xs sm:text-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 lg:gap-6 overflow-x-auto">
+            <div className="flex items-center gap-2 whitespace-nowrap">
               <div className="w-3 h-3 bg-blue-500 rounded"></div>
               <span className="text-gray-300">
-                Client Orders: <span className="text-blue-400 font-mono">{stats.clientOrders}</span>
+                <span className="hidden sm:inline">Client Orders: </span>
+                <span className="sm:hidden">Client: </span>
+                <span className="text-blue-400 font-mono">{stats.clientOrders}</span>
               </span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 whitespace-nowrap">
               <div className="w-3 h-3 bg-orange-500 rounded"></div>
               <span className="text-gray-300">
-                Algo Orders: <span className="text-orange-400 font-mono">{stats.algoOrders}</span>
+                <span className="hidden sm:inline">Algo Orders: </span>
+                <span className="sm:hidden">Algo: </span>
+                <span className="text-orange-400 font-mono">{stats.algoOrders}</span>
               </span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 whitespace-nowrap">
               <div className="w-3 h-3 bg-green-500 rounded"></div>
               <span className="text-gray-300">
-                Market Orders: <span className="text-green-400 font-mono">{stats.marketOrders}</span>
+                <span className="hidden sm:inline">Market Orders: </span>
+                <span className="sm:hidden">Market: </span>
+                <span className="text-green-400 font-mono">{stats.marketOrders}</span>
               </span>
             </div>
           </div>
           
-          <div className="text-gray-400 text-xs">
-            Last Update: {new Date().toLocaleTimeString()}
+          <div className="text-gray-400 text-2xs sm:text-xs text-center sm:text-right">
+            <span className="hidden sm:inline">Last Update: </span>
+            {new Date().toLocaleTimeString()}
           </div>
         </div>
       </div>
       
-      {/* Main Trading Grid */}
-      <div className="flex-1 p-4">
+      {/* Main Trading Grid - Responsive Padding and Height */}
+      <div className="flex-1 p-2 sm:p-3 lg:p-4">
         <AGGridTradingTable 
-          height="calc(100vh - 240px)"
+          height="calc(100vh - 280px)"
           enableRealTimeUpdates={true}
         />
       </div>
       
-      {/* HFT Performance Indicators */}
-      <div className="bg-black border-t border-gray-700 px-4 py-2">
-        <div className="flex justify-between items-center text-xs font-mono">
-          <div className="flex items-center gap-4">
-            <div className="text-green-400">✓ Normalized Store (O(1) lookups)</div>
-            <div className="text-blue-400">✓ Immutable Updates (Immer)</div>
-            <div className="text-yellow-400">✓ Web Worker Processing</div>
-            <div className="text-purple-400">✓ Delta Updates</div>
-          </div>
-          <div className="text-gray-400">
-            HFT Mode: Performance First • Non-blocking UI • Real-time Data Engine
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 }
